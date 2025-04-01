@@ -1,0 +1,68 @@
+{
+        "info": {
+        "id": "373648",
+        "name": "Afiya Delight The Restaurant",
+        "cloudinaryImageId": "db24d9126c95351c5aa45dd998b4fa1a",
+        "locality": "Irc Village",
+        "areaName": "Sahid Nagar",
+        "costForTwo": "₹300 for two",
+        "cuisines": [
+            "Indian",
+            "Chinese",
+            "Tandoor"
+        ],
+        "avgRating": 4,
+        "parentId": "27443",
+        "avgRatingString": "4.0",
+        "totalRatingsString": "9.6K+",
+        "sla": {
+            "deliveryTime": 51,
+            "lastMileTravel": 8.9,
+            "serviceability": "SERVICEABLE",
+            "slaString": "50-55 mins",
+            "lastMileTravelString": "8.9 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2025-04-01 23:00:00",
+            "opened": true
+        },
+        "badges": {},
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {},
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "50% OFF",
+            "subHeader": "UPTO ₹100"
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {},
+        "externalRatings": {
+            "aggregatedRating": {
+                "rating": "--"
+            }
+        },
+        "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {
+        "context": "seo-data-ec5ee8e9-0f55-46fe-a09b-82e2553bb6c1"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/city/bhubaneswar/afiya-delight-the-restaurant-irc-village-sahid-nagar-rest373648",
+        "type": "WEBLINK"
+    }
+}
