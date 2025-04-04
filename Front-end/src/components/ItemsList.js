@@ -27,7 +27,7 @@ const ItemsList = ({data,headingID}) => {
               key={item?.card?.info?.id}
               className={` flex justify-between  font-sans my-2 rounded-xl ${
                 theme == "dark"
-                  ? "  border border-white shadow-2xl"
+                  ? "  border border-white shadow-2xl text-white"
                   : "shadow-xl"
               }`}
             >

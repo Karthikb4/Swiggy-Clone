@@ -11,6 +11,8 @@ import UserContext from "./utils/UserContext";
 import ThemeContext from "./utils/ThemeContext";
 import appStore from "./utils/appStore";
 import {Provider}from "react-redux"
+import LocationContext from "./utils/LocationContext";
+import Shimmer from "./components/Shimmer";
 
 
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -23,16 +25,34 @@ const AppLayout = () => {
   const { loggedInUser } = useContext(UserContext);
   const [userName, setUserName] = useState(loggedInUser);
   const [themeMode, setThemeMode] = useState("light");
+  const {lng,lat}=useContext(LocationContext);
+  const [location,setlocation]=useState({lat:null,lng:null});
   useEffect(() => {
     // autentiction making api call
+    
     const data = {
       name: "Karthik",
     };
     setUserName(data.name);
-  }, []);
+    //getting the location
+    navigator.geolocation.getCurrentPosition((position)=>{
+      setlocation({
+        lat:position.coords.latitude,
+        lng:position.coords.longitude
+      });
+    }, (error)=>{
+      console.log("Failed to fetch Location",error);
+    })
 
-  return (
+  }, []);
+  console.log(`lat=${location.lat}  lng=${location.lng}`)
+
+  
+
+  return location.lat===null ?<Shimmer/>:(
     <Provider store={appStore}>
+      {console.log("entered")}
+      <LocationContext.Provider value={{lat:location.lat ,lng:location.lng}}>
       <ThemeContext.Provider value={{ theme: themeMode, setThemeMode }}>
         <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
           <div className="app ">
@@ -42,6 +62,7 @@ const AppLayout = () => {
           </div>
         </UserContext.Provider>
       </ThemeContext.Provider>
+      </LocationContext.Provider>
     </Provider>
   );
 };

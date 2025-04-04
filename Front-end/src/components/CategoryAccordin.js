@@ -22,7 +22,7 @@ const CategoryAccordin = ({ index, data,showItems,setShowIndex, currentIndex,set
             onClick={()=>{
               console.log(index);
              
-              if(currentIndex == index)
+              if(currentIndex === index)
               {
                 setShowIndexNULL();
               }

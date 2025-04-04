@@ -9,11 +9,11 @@ const ResturantMenu = () => {
   const { resId } = useParams(); // it return an object in the format of {resturantId: 10203} ; hence whatever the variable in the dynamic route it was mentioned with here also use the same in the destructing of the object.
   const [showIndex, setShowIndex] = useState(null);
   const TotalResDetails = useResturantData(resId);
-  let { resDetails, categoryList } = TotalResDetails;
+  let { resDetails, categoryList, setCategoryList } = TotalResDetails;
 
-  const{theme}= useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
-//   console.log(categoryList?.cards);
+  //   console.log(categoryList?.cards);
   if (categoryList == null) return <Shimmer />;
   // if(resMenu!=null)
   const { name, cuisines, costForTwoMessage } = resDetails;
@@ -21,31 +21,52 @@ const ResturantMenu = () => {
   categoryList = categoryList.cards.filter((cat) => {
     if (
       cat.card.card["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+      cat.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     )
       return true;
     return false;
   });
-//   console.log(categoryList);
-//   console.log(categoryList?.card?.card);
+  // setCategoryList(newcategoryList);
+  //   console.log(categoryList);
+  //   console.log(categoryList?.card?.card);
   return (
-    <div className= {`text-center  ${theme=="dark"?"text-white":"text-black"}`}>
+    <div
+      className={`text-center  ${
+        theme == "dark" ? "text-white" : "text-black"
+      }`}
+    >
       <h1 className=" text-[1.2rem] my-2 font-bold">{name}</h1>
       <p className=" text-sm my-2 font-bold">
         {cuisines.join(",")} - {costForTwoMessage}
       </p>
       {/* controlled Component */}
-      {categoryList.map((cat, ind) => (
-        <CategoryAccordin
-          key={ind}
-          data={cat.card.card}
-          showItems={ ind === showIndex ? true : false}
-          setShowIndex={()=> setShowIndex(ind)}
-          currentIndex={showIndex}
-          index={ind}
-          setShowIndexNULL={()=> setShowIndex(null)}
-        />
-      ))}
+      {categoryList.map((cat, ind1) => {
+          return cat?.card?.card?.itemCards ? (
+            <CategoryAccordin
+            key={`category-${ind1}`} // Unique key for top-level categories
+              data={cat?.card?.card}
+              showItems={`category-${ind1}` === showIndex ? true : false}
+              setShowIndex={() => setShowIndex(`category-${ind1}`)}
+              currentIndex={showIndex}
+              index={`category-${ind1}`}
+              setShowIndexNULL={() => setShowIndex(null)}
+            />
+          ) : (
+            cat?.card?.card?.categories?.map((cat, ind2) => (
+              <CategoryAccordin
+                key={`subcategory-${ind1}-${ind2}`} // Unique key using both indices
+                data={cat}
+                showItems={`subcategory-${ind1}-${ind2}` === showIndex ? true : false}
+                setShowIndex={() => setShowIndex(`subcategory-${ind1}-${ind2}`)}
+                currentIndex={showIndex}
+                index={`subcategory-${ind1}-${ind2}`}
+                setShowIndexNULL={() => setShowIndex(null)}
+              />
+            ))
+          );
+      })}
     </div>
   );
 };
