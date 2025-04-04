@@ -15,7 +15,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --no-cache --workers 2",
+    "build": "set NODE_OPTIONS=--max-old-space-size=512 && parcel build index.html --no-cache",
     "test": "jest",
     "watch-test": "jest --watch",
     "predeploy": "npm run build",
