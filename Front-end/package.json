@@ -2,13 +2,13 @@
   "name": "10-make-it-stylish",
   "version": "1.0.0",
   "description": "Package manager for the project",
-  "homepage": "https://github.com/Karthikb4/React-Learning#readme",
+  "homepage": "https://Karthikb4.github.io/Swiggy-Clone/",
   "bugs": {
-    "url": "https://github.com/Karthikb4/React-Learning/issues"
+    "url": "https://github.com/Karthikb4/Swiggy-Clone/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Karthikb4/React-Learning.git"
+    "url": "git+https://github.com/Karthikb4/Swiggy-Clone.git"
   },
   "license": "ISC",
   "author": "Karthik",
@@ -17,7 +17,9 @@
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest",
-    "watch-test":"jest --watch"
+    "watch-test": "jest --watch",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
@@ -38,6 +40,7 @@
     "@types/jest": "^29.5.14",
     "autoprefixer": "^10.4.21",
     "babel-jest": "^29.7.0",
+    "gh-pages": "^6.3.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "parcel": "^2.13.3",
